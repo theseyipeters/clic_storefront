@@ -6,7 +6,7 @@ import {
 	getBrandingConfig,
 	clearBranding,
 	getStoreInventory,
-} from "@/slices/brandingSlice";
+} from "@/slices/storefrontSlice";
 import { generateColors } from "@mantine/colors-generator";
 import { createMantineTheme } from "@/lib/mantine-theme";
 import { HelmetProvider } from "react-helmet-async";
@@ -18,8 +18,8 @@ interface ThemeProviderProps {
 
 export function ThemeProvider({ children, subdomain }: ThemeProviderProps) {
 	const dispatch = useAppDispatch();
-	const { branding, loading, error } = useAppSelector(
-		(state) => state.branding
+	const { branding, loading, error, vendor } = useAppSelector(
+		(state) => state.storefront
 	);
 
 	// Fetch branding config for current subdomain
@@ -53,9 +53,7 @@ export function ThemeProvider({ children, subdomain }: ThemeProviderProps) {
 	// Update document title
 	useEffect(() => {
 		if (subdomain && branding) {
-			const title = `${
-				subdomain.charAt(0).toUpperCase() + subdomain.slice(1)
-			} Store`;
+			const title = vendor?.store_name!;
 			document.title = title;
 		}
 	}, [subdomain, branding]);

@@ -23,7 +23,7 @@ export function ComponentProvider({ children }: { children: React.ReactNode }) {
 		branding: brandingConfig,
 		loading,
 		error,
-	} = useAppSelector((state) => state.branding);
+	} = useAppSelector((state) => state.storefront);
 
 	const theme = brandingConfig.theme ? getTheme(brandingConfig.theme) : null;
 

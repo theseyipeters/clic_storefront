@@ -24,7 +24,7 @@ interface AppWithLayoutProps {
 function AppWithLayout({ Component, pageProps }: AppWithLayoutProps) {
 	const { Layout } = useThemeComponents();
 	const { branding: brandingConfig } = useAppSelector(
-		(state) => state.branding
+		(state) => state.storefront
 	);
 
 	return (

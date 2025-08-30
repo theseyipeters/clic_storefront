@@ -14,7 +14,7 @@ interface ClassicHomeProps {
 export function Home({ brandingConfig }: ClassicHomeProps) {
 	const [activeTab, setActiveTab] = useState<string | null>("all");
 	const branding = brandingConfig;
-	const { vendor, products } = useAppSelector((state) => state.branding);
+	const { vendor, products } = useAppSelector((state) => state.storefront);
 	return (
 		<main className="">
 			{/* =======  Banner ======= */}
@@ -34,8 +34,6 @@ export function Home({ brandingConfig }: ClassicHomeProps) {
 					fz={20}>
 					{vendor?.store_description}
 				</Text>
-
-				<Link href={"/checkout"}>Checkout</Link>
 			</Box>
 
 			{/* ========= Products ========= */}
