@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import API from "@/lib/axios";
 import { Product } from "@/types/inventory";
 import { Vendor } from "@/types/vendor";

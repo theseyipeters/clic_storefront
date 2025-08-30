@@ -1,16 +1,5 @@
-import React, { useState } from "react";
-import {
-	Container,
-	Title,
-	Text,
-	Button,
-	Grid,
-	Card,
-	Image,
-	Group,
-	Box,
-	Tabs,
-} from "@mantine/core";
+import { useState } from "react";
+import { Text, Box, Tabs } from "@mantine/core";
 import styles from "../styles/classic.module.css";
 import { BrandingConfig } from "@/types/theme";
 import { useAppSelector } from "@/store/hooks";

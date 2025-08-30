@@ -2,16 +2,16 @@
 import { Product } from "@/types/inventory";
 import { BrandingConfig } from "@/types/theme";
 import { SocialLinks, StorePolicies } from "@/types/vendor";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-const fallbackConfig = {
-	logo_url: "/fallback-logo.png",
-	primary_color: "#000000",
-	secondary_color: "#FFFFFF",
-	theme: "classic",
-	font_family: "Inter",
-	favicon_url: null,
-};
+// const fallbackConfig = {
+// 	logo_url: "/fallback-logo.png",
+// 	primary_color: "#000000",
+// 	secondary_color: "#FFFFFF",
+// 	theme: "classic",
+// 	font_family: "Inter",
+// 	favicon_url: null,
+// };
 
 export interface Vendor {
 	store_name: string;
