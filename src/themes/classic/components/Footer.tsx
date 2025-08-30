@@ -14,7 +14,7 @@ export function Footer() {
 		whatsapp_number,
 		social_links,
 		branding_config,
-		store_policies,
+		// store_policies,
 	} = vendor;
 
 	const currentYear = new Date().getFullYear();

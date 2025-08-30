@@ -1,6 +1,5 @@
 import React from "react";
-import { Group, Image, Text, Button, Box } from "@mantine/core";
-import styles from "../styles/classic.module.css";
+import { Image, Text, Box } from "@mantine/core";
 import { BrandingConfig } from "@/types/theme";
 import { useAppSelector } from "@/store/hooks";
 import { Icon } from "@iconify/react/dist/iconify.js";

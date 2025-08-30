@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { AppProps } from "next/app";
 import "@/styles/globals.css";
 import "@mantine/core/styles.css";

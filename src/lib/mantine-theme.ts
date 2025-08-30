@@ -10,7 +10,7 @@ export function createMantineTheme(
 		console.log("BRANDING CONFIG", brandingConfig);
 
 		return {
-			fontFamily: `${brandingConfig?.font_family!}, sans-serif`,
+			fontFamily: `${brandingConfig.font_family!}, sans-serif`,
 			colors: {
 				brand: [
 					brandingConfig.primary_color + "10", // Lightest

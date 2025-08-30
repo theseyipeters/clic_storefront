@@ -61,11 +61,11 @@ export function ThemeProvider({ children, subdomain }: ThemeProviderProps) {
 	}, [subdomain, branding]);
 
 	const primaryColorName = "branding";
-	const primaryHex = branding?.primary_color!;
+	const primaryHex = branding.primary_color!;
 	const brandingColorScale = generateColors(primaryHex!);
 
 	const themeObject = createTheme({
-		fontFamily: `${branding?.font_family!}, sans-serif`,
+		fontFamily: `${branding.font_family!}, sans-serif`,
 		colors: {
 			[primaryColorName]: brandingColorScale,
 		},
