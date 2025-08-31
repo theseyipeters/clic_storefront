@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import API from "@/lib/axios";
-import { Product } from "@/types/inventory";
+import { CartItem, Product } from "@/types/inventory";
 import { BrandingConfig, Vendor } from "@/types/vendor";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
@@ -17,6 +17,7 @@ interface StorefrontState {
 	vendor: Vendor | null;
 	branding: BrandingConfig;
 	products: Product[] | null;
+	cartItems: CartItem[];
 	currentSubdomain: string | null;
 	loading: boolean;
 	error: string | null;
@@ -26,6 +27,7 @@ const initialState: StorefrontState = {
 	vendor: null,
 	branding: fallbackConfig,
 	products: null,
+	cartItems: [],
 	currentSubdomain: null,
 	loading: false,
 	error: null,
@@ -69,12 +71,41 @@ const storefrontSlice = createSlice({
 		setCurrentSubdomain: (state, action: PayloadAction<string>) => {
 			state.currentSubdomain = action.payload;
 		},
+
 		clearError: (state) => {
 			state.error = null;
 		},
-		// Add action to clear branding when subdomain changes
 		clearBranding: (state) => {
 			state.branding = fallbackConfig;
+		},
+
+		addToCart: (state, action: PayloadAction<CartItem>) => {
+			const existing = state.cartItems?.find(
+				(item) => item.id === action.payload.id
+			);
+			if (existing) {
+				existing.quantity += action.payload.quantity;
+			} else {
+				state.cartItems?.push(action.payload);
+			}
+		},
+		removeFromCart: (state, action: PayloadAction<string>) => {
+			state.cartItems = state.cartItems.filter(
+				(item) => item.id !== action.payload
+			);
+		},
+		updateQuantity: (
+			state,
+			action: PayloadAction<{ id: string; quantity: number }>
+		) => {
+			const item = state.cartItems?.find((i) => i.id === action.payload.id);
+			if (item) item.quantity = action.payload.quantity;
+		},
+		clearCart: (state) => {
+			state.cartItems = [];
+		},
+		setCart: (state, action: PayloadAction<CartItem[]>) => {
+			state.cartItems = action.payload;
 		},
 	},
 	extraReducers: (builder) => {
@@ -100,7 +131,15 @@ const storefrontSlice = createSlice({
 	},
 });
 
-export const { setCurrentSubdomain, clearError, clearBranding } =
-	storefrontSlice.actions;
+export const {
+	setCurrentSubdomain,
+	clearError,
+	clearBranding,
+	setCart,
+	updateQuantity,
+	clearCart,
+	removeFromCart,
+	addToCart,
+} = storefrontSlice.actions;
 
 export default storefrontSlice.reducer;

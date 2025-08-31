@@ -1,16 +1,18 @@
 import React from "react";
 import { Image, Text, Box, Indicator } from "@mantine/core";
 import { BrandingConfig } from "@/types/theme";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import Search from "./common/Search";
+import Search from "./common/Search/Search";
+import { toggleCartDrawer } from "@/slices/actionSlice";
 
 interface ClassicHeaderProps {
 	brandingConfig: BrandingConfig;
 }
 
 export function Header({ brandingConfig }: ClassicHeaderProps) {
-	const { vendor } = useAppSelector((state) => state.storefront);
+	const dispatch = useAppDispatch();
+	const { vendor, cartItems } = useAppSelector((state) => state.storefront);
 	const branding = brandingConfig;
 	return (
 		<header
@@ -44,10 +46,13 @@ export function Header({ brandingConfig }: ClassicHeaderProps) {
 						</div>
 
 						<Indicator
+							autoContrast
 							inline
-							label={5}
+							label={cartItems.length}
 							size={20}>
-							<button className="flex items-center hover:text-[var(--brand-color)] transition-all duration-300 ease-in-out cursor-pointer">
+							<button
+								onClick={() => dispatch(toggleCartDrawer(true))}
+								className="flex items-center hover:text-[var(--brand-color)] transition-all duration-300 ease-in-out cursor-pointer">
 								<Icon
 									icon={"ph:shopping-cart"}
 									fontSize={25}
