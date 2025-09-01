@@ -53,7 +53,7 @@ export function ThemeProvider({ children, subdomain }: ThemeProviderProps) {
 	// Update document title
 	useEffect(() => {
 		if (subdomain && branding) {
-			const title = vendor?.store_name!;
+			const title = vendor?.store_name || "";
 			document.title = title;
 		}
 	}, [subdomain, branding]);

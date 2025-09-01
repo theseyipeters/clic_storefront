@@ -17,7 +17,7 @@ export function Header({ brandingConfig }: ClassicHeaderProps) {
 	return (
 		<header
 			style={{ background: "white", fontFamily: branding.font_family }}
-			className="h-[80px] text-black font-bold px-[15px] 2xl:px-0 w-full  mx-auto flex items-center justify-center">
+			className="h-[80px] text-black font-bold px-[15px] 2xl:px-0 w-full  mx-auto flex items-center justify-center drop-shadow-xs">
 			<div className="w-full grid grid-cols-3 gap-3 items-center justify-between max-w-[1440px]">
 				<div className="flex items-center gap-2">
 					<div className="w-[40px] rounded-full overflow-hidden">

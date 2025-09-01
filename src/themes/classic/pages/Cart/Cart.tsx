@@ -10,11 +10,13 @@ import {
 	TextInput,
 	ActionIcon,
 	Badge,
+	Breadcrumbs,
 } from "@mantine/core";
 import { BrandingConfig } from "@/types/theme";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useAppSelector } from "@/store/hooks";
 import Amount from "../../components/common/Amount/Amount";
+import { CartItem } from "@/types/inventory";
 
 interface ClassicCartProps {
 	brandingConfig: BrandingConfig;
@@ -29,9 +31,9 @@ export function Cart({ brandingConfig }: ClassicCartProps) {
 	);
 
 	return (
-		<div className="w-full bg-[#fff]  pb-[120px]">
+		<div className="w-full bg-[#fff]  pb-[120px] pt-[40px]">
 			<Group
-				className="max-w-[1440px] mx-auto "
+				className="max-w-[1440px] mx-auto"
 				align="start"
 				justify="space-between"
 				p="lg">
@@ -43,132 +45,61 @@ export function Cart({ brandingConfig }: ClassicCartProps) {
 					<Text
 						fw={600}
 						size="xl">
-						Cart
+						Your Cart
 					</Text>
-					<Table verticalSpacing="md">
-						<Table.Thead>
-							<Table.Tr>
-								<Table.Th>
-									<Text
-										fz={16}
-										fw={600}
-										c={"dimmed"}>
-										Products
-									</Text>
-								</Table.Th>
-								<Table.Th>
-									<Text
-										fz={16}
-										fw={600}
-										c={"dimmed"}>
-										Quantity
-									</Text>
-								</Table.Th>
-								<Table.Th>
-									<Text
-										fz={16}
-										fw={600}
-										c={"dimmed"}>
-										Price
-									</Text>
-								</Table.Th>
-								<Table.Th>
-									<Text
-										fz={16}
-										fw={600}
-										c={"dimmed"}>
-										Subtotal
-									</Text>
-								</Table.Th>
-							</Table.Tr>
-						</Table.Thead>
-						<Table.Tbody>
-							{cartItems.map((item) => (
-								<Table.Tr key={item.id}>
-									{/* Product Info */}
-									<Table.Td h={180}>
-										<Group align="center">
-											<Image
-												src={item.image}
-												alt={item.name}
-												w={100}
-												h={100}
-												fit="cover"
-												radius="md"
-											/>
-											<Stack gap={2}>
-												<Text fw={600}>{item.name}</Text>
-												<Text
-													size="sm"
-													c="dimmed">
-													{item.sku}
-												</Text>
-												<Group
-													mt={15}
-													gap={5}>
-													<ActionIcon
-														color="red"
-														variant="subtle"
-														size="sm">
-														<button className="w-fit cursor-pointer">
-															<Icon
-																icon={"mynaui:trash"}
-																fontSize={20}
-																color="red"
-															/>
-														</button>
-													</ActionIcon>
-													<Text
-														size="sm"
-														c="red">
-														Remove
-													</Text>
-												</Group>
-											</Stack>
-										</Group>
-									</Table.Td>
-
-									{/* Quantity */}
-									<Table.Td>
-										<Group gap="xs">
-											<ActionIcon
-												variant="subtle"
-												size="sm">
-												–
-											</ActionIcon>
-											<NumberInput
-												value={item.quantity}
-												min={1}
-												w={60}
-												size="sm"
-												readOnly
-											/>
-											<ActionIcon
-												variant="subtle"
-												size="sm">
-												+
-											</ActionIcon>
-										</Group>
-									</Table.Td>
-
-									{/* Price */}
-									<Table.Td>
-										<Amount value={item.price} />
-									</Table.Td>
-
-									{/* Subtotal */}
-									<Table.Td>
-										<Amount value={item.price * item.quantity} />
-									</Table.Td>
+					<div className="h-[70vh] overflow-auto">
+						<Table verticalSpacing="md">
+							<Table.Thead>
+								<Table.Tr>
+									<Table.Th>
+										<Text
+											fz={16}
+											fw={600}
+											c={"dimmed"}>
+											Products
+										</Text>
+									</Table.Th>
+									<Table.Th>
+										<Text
+											fz={16}
+											fw={600}
+											c={"dimmed"}>
+											Quantity
+										</Text>
+									</Table.Th>
+									<Table.Th>
+										<Text
+											fz={16}
+											fw={600}
+											c={"dimmed"}>
+											Price
+										</Text>
+									</Table.Th>
+									<Table.Th>
+										<Text
+											fz={16}
+											fw={600}
+											c={"dimmed"}>
+											Subtotal
+										</Text>
+									</Table.Th>
 								</Table.Tr>
-							))}
-						</Table.Tbody>
-					</Table>
+							</Table.Thead>
+							<Table.Tbody>
+								{cartItems.map((item) => (
+									<CartTableItem
+										key={item.id}
+										item={item}
+									/>
+								))}
+							</Table.Tbody>
+						</Table>
+					</div>
 				</Stack>
 
 				{/* Right side: Summary */}
 				<Paper
-					shadow="md"
+					withBorder
 					p="lg"
 					radius="lg"
 					w={400}>
@@ -201,7 +132,10 @@ export function Cart({ brandingConfig }: ClassicCartProps) {
 						/>
 						<Group justify="space-between">
 							<Text fw={600}>Total</Text>
-							<Text fw={600}>${subtotal}</Text>
+							<Amount
+								fw={600}
+								value={subtotal}
+							/>
 						</Group>
 						<Button
 							fullWidth
@@ -216,3 +150,89 @@ export function Cart({ brandingConfig }: ClassicCartProps) {
 		</div>
 	);
 }
+
+interface CartTableItemProps {
+	item: CartItem;
+}
+
+const CartTableItem = ({ item }: CartTableItemProps) => {
+	return (
+		<Table.Tr>
+			{/* Product Info */}
+			<Table.Td h={180}>
+				<Group align="center">
+					<Image
+						src={item.image}
+						alt={item.name}
+						w={100}
+						h={100}
+						fit="cover"
+						radius="md"
+					/>
+					<Stack gap={2}>
+						<Text fw={600}>{item.name}</Text>
+						<Text
+							size="sm"
+							c="dimmed">
+							{item.sku}
+						</Text>
+						<Group
+							mt={15}
+							gap={5}>
+							<ActionIcon
+								color="red"
+								variant="subtle"
+								size="sm">
+								<button className="w-fit cursor-pointer">
+									<Icon
+										icon={"mynaui:trash"}
+										fontSize={20}
+										color="red"
+									/>
+								</button>
+							</ActionIcon>
+							<Text
+								size="sm"
+								c="red">
+								Remove
+							</Text>
+						</Group>
+					</Stack>
+				</Group>
+			</Table.Td>
+
+			{/* Quantity */}
+			<Table.Td>
+				<Group gap="xs">
+					<ActionIcon
+						variant="subtle"
+						size="sm">
+						–
+					</ActionIcon>
+					<NumberInput
+						value={item.quantity}
+						min={1}
+						w={60}
+						size="sm"
+						readOnly
+					/>
+					<ActionIcon
+						variant="subtle"
+						size="sm">
+						+
+					</ActionIcon>
+				</Group>
+			</Table.Td>
+
+			{/* Price */}
+			<Table.Td>
+				<Amount value={item.price} />
+			</Table.Td>
+
+			{/* Subtotal */}
+			<Table.Td>
+				<Amount value={item.price * item.quantity} />
+			</Table.Td>
+		</Table.Tr>
+	);
+};

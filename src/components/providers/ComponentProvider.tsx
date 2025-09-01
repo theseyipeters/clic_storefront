@@ -31,8 +31,8 @@ export function ComponentProvider({ children }: { children: React.ReactNode }) {
 		return (
 			<Center my={400}>
 				<Loader
-					color="blue"
-					size={"xl"}
+					color={brandingConfig.primary_color}
+					size={"sm"}
 				/>
 			</Center>
 		);
