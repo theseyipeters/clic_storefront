@@ -5,6 +5,7 @@ interface AmountProps extends TextProps {
 	type?: string;
 	isCreditDebit?: boolean;
 	hideSign?: boolean;
+	isDiscounted?: boolean;
 }
 
 export default function Amount({
@@ -12,6 +13,7 @@ export default function Amount({
 	type,
 	isCreditDebit,
 	hideSign,
+	isDiscounted,
 	...props
 }: AmountProps) {
 	// Remove "NGN" prefix and commas from the value if it's a string, then convert it to a number
@@ -48,13 +50,14 @@ export default function Amount({
 		minimumFractionDigits: 2,
 		maximumFractionDigits: 2,
 	}).format(cleanedValue);
+
 	return (
-		<>
-			<Text
-				c={handleColor()}
-				{...props}>
-				₦{formattedValue}
-			</Text>
-		</>
+		<Text
+			c={handleColor()}
+			fz={isDiscounted ? 14 : 16}
+			td={isDiscounted ? "line-through" : ""} // 👈 strike-through if discounted
+			{...props}>
+			₦{formattedValue}
+		</Text>
 	);
 }

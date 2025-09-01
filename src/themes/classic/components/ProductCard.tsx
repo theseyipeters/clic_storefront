@@ -1,8 +1,9 @@
-import Amount from "@/components/common/Amount/Amount";
 import { Product } from "@/types/inventory";
-import { Button, Skeleton } from "@mantine/core";
+import { Skeleton } from "@mantine/core";
 import Link from "next/link";
 import { useState } from "react";
+import AddToCartButton from "./common/AddToCartButton/AddToCartButton";
+import Amount from "./common/Amount/Amount";
 
 type ProductCardProps = {
 	product: Product;
@@ -13,9 +14,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 	const [imageError, setImageError] = useState(false);
 
 	return (
-		<div className="">
+		<div className="bg-white p-3 rounded-2xl">
 			{product.images && (
-				<div className="bg-white h-[350px] mb-4 rounded-lg overflow-hidden relative">
+				<div className="bg-gray-200 h-[250px] mb-4 rounded-lg overflow-hidden relative">
 					{!imageLoaded && !imageError && (
 						<Skeleton
 							height="100%"
@@ -40,23 +41,24 @@ export default function ProductCard({ product }: ProductCardProps) {
 					)}
 				</div>
 			)}
-			<Link href={`${window.location.origin}/inventory/p/${product.slug}`}>
-				<h3 className="text-lg text-gray-600 font-medium">{product.name}</h3>
-			</Link>
-			<div className="flex items-end justify-between gap-2 mt-4">
-				<Amount
-					fw={600}
-					fz={18}
-					c={"black"}
-					value={product.pricing.final_price}
-				/>
 
-				<Button
-					h={40}
-					fz={12}
-					radius={50}>
-					Add to Cart
-				</Button>
+			<div className="relative">
+				<div className="absolute right-0 -top-[50px] z-50">
+					<AddToCartButton product={product} />
+				</div>
+				<div className="flex items-end justify-between gap-2">
+					<Link href={`${window.location.origin}/inventory/p/${product.slug}`}>
+						<Amount
+							fw={700}
+							fz={18}
+							c={"black"}
+							value={product.pricing.final_price}
+						/>
+					</Link>
+				</div>
+				<Link href={`${window.location.origin}/inventory/p/${product.slug}`}>
+					<h3 className="text-sm text-[#4a5565] font-medium">{product.name}</h3>
+				</Link>
 			</div>
 		</div>
 	);

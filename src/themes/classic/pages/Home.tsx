@@ -5,7 +5,6 @@ import { BrandingConfig } from "@/types/theme";
 import { useAppSelector } from "@/store/hooks";
 import ProductCard from "../components/ProductCard";
 import { productCategories } from "@/data/inventoryData";
-import Link from "next/link";
 
 interface ClassicHomeProps {
 	brandingConfig: BrandingConfig;
@@ -14,7 +13,7 @@ interface ClassicHomeProps {
 export function Home({ brandingConfig }: ClassicHomeProps) {
 	const [activeTab, setActiveTab] = useState<string | null>("all");
 	const branding = brandingConfig;
-	const { vendor, products } = useAppSelector((state) => state.branding);
+	const { vendor, products } = useAppSelector((state) => state.storefront);
 	return (
 		<main className="">
 			{/* =======  Banner ======= */}
@@ -34,15 +33,13 @@ export function Home({ brandingConfig }: ClassicHomeProps) {
 					fz={20}>
 					{vendor?.store_description}
 				</Text>
-
-				<Link href={"/checkout"}>Checkout</Link>
 			</Box>
 
 			{/* ========= Products ========= */}
-			<div className="my-[60px] max-w-[1440px] px-[15px] 2xl:px-0 mx-auto">
+			<div className="mt-[60px] mb-[120px] max-w-[1280px] px-[15px] 2xl:px-0 mx-auto">
 				{/* ====== Sort categories filter */}
 				<div className="w-full flex items-center justify-between">
-					<Box className={styles.container}>
+					<Box>
 						<Tabs
 							classNames={{
 								tab: styles.tab,
@@ -67,7 +64,7 @@ export function Home({ brandingConfig }: ClassicHomeProps) {
 				</div>
 
 				{/* ========= products ===== */}
-				<div className="mt-[50px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-10">
+				<div className="mt-[50px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-10 max-w-[1280px] mx-auto">
 					{products?.map((product, idx) => (
 						<ProductCard
 							key={idx}

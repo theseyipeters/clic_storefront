@@ -11,6 +11,7 @@ import {
 } from "../components/providers/ComponentProvider";
 import { store } from "@/store/store";
 import { useAppSelector } from "@/store/hooks";
+import CartPersistence from "@/components/utils/CartPersistence";
 
 interface CustomAppProps extends AppProps {
 	subdomain: string;
@@ -24,7 +25,7 @@ interface AppWithLayoutProps {
 function AppWithLayout({ Component, pageProps }: AppWithLayoutProps) {
 	const { Layout } = useThemeComponents();
 	const { branding: brandingConfig } = useAppSelector(
-		(state) => state.branding
+		(state) => state.storefront
 	);
 
 	return (
@@ -41,6 +42,7 @@ export default function App({
 }: CustomAppProps) {
 	return (
 		<Provider store={store}>
+			<CartPersistence />
 			<ThemeProvider subdomain={subdomain}>
 				<ComponentProvider>
 					<AppWithLayout

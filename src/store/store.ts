@@ -1,11 +1,11 @@
 "use client";
 import { configureStore } from "@reduxjs/toolkit";
-import brandingReducer from "@/slices/brandingSlice";
 import storefrontReducer from "@/slices/storefrontSlice";
+import actionReducer from "@/slices/actionSlice";
 
 export const store = configureStore({
 	reducer: {
-		branding: brandingReducer,
+		action: actionReducer,
 		storefront: storefrontReducer,
 	},
 });

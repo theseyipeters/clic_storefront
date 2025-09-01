@@ -1,62 +1,12 @@
-.classicHeader {
-	border-bottom: 3px solid #ddd;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.container {
+	background-color: "red";
 }
 
-.classicTitle {
-	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
+.tab {
+	border-radius: 30px;
+	border: 0.5px solid rgba(128, 128, 128, 0.388);
 
-.classicNav button {
-	border-radius: 0 !important;
-	text-transform: uppercase;
-	font-weight: 600;
-	letter-spacing: 0.5px;
-}
-
-.classicFooter {
-	border-top: 3px solid #ddd;
-}
-
-.classicHome {
-	padding: 2rem 0;
-}
-
-.classicHero {
-	border: 2px solid #ddd;
-	position: relative;
-}
-
-.classicHero::before {
-	content: "";
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	right: 10px;
-	bottom: 10px;
-	border: 1px solid #ccc;
-	pointer-events: none;
-}
-
-.classicCard {
-	border: 2px solid #ddd !important;
-	border-radius: 0 !important;
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.classicCard:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.classicProduct {
-	padding: 3rem 0;
-}
-
-.productImage {
-	border: 3px solid #ddd;
-}
-
-.productDetails {
-	padding: 1rem;
+	&[data-active] {
+		border: none;
+	}
 }

@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { getTheme, Theme } from "@/themes";
-import { Center, Loader, LoadingOverlay } from "@mantine/core";
+import { Center, Loader } from "@mantine/core";
 import { BrandingConfig } from "@/types/theme";
 
 interface ComponentContextType {
@@ -23,7 +23,7 @@ export function ComponentProvider({ children }: { children: React.ReactNode }) {
 		branding: brandingConfig,
 		loading,
 		error,
-	} = useAppSelector((state) => state.branding);
+	} = useAppSelector((state) => state.storefront);
 
 	const theme = brandingConfig.theme ? getTheme(brandingConfig.theme) : null;
 
@@ -31,8 +31,8 @@ export function ComponentProvider({ children }: { children: React.ReactNode }) {
 		return (
 			<Center my={400}>
 				<Loader
-					color="blue"
-					size={"xl"}
+					color={brandingConfig.primary_color}
+					size={"sm"}
 				/>
 			</Center>
 		);

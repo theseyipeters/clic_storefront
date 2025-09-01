@@ -1,9 +1,9 @@
 import { useThemePages } from "@/components/providers/ComponentProvider";
 import { useAppSelector } from "@/store/hooks";
 
-export default function ProductPage() {
+export default function CartPage() {
 	const { branding } = useAppSelector((state) => state.storefront);
-	const { Checkout } = useThemePages();
+	const { Cart } = useThemePages();
 
-	return <Checkout brandingConfig={branding} />;
+	return <Cart brandingConfig={branding} />;
 }

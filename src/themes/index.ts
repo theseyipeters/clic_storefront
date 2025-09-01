@@ -20,6 +20,7 @@ export interface ThemeComponents {
 export interface ThemePages {
 	Product: ComponentType<{ productId: string; brandingConfig: BrandingConfig }>;
 	Checkout: ComponentType<{ brandingConfig: BrandingConfig }>;
+	Cart: ComponentType<{ brandingConfig: BrandingConfig }>;
 	Home: ComponentType<{ brandingConfig: BrandingConfig }>;
 }
 

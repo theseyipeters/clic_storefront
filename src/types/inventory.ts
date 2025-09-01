@@ -29,3 +29,19 @@ export interface ProductCategory {
 	value: string;
 	subCategory: SubCategory[];
 }
+
+export interface CartItem {
+	id: string;
+	name: string;
+	slug: string;
+	sku: string;
+	original_price: number;
+	price: number; // unit price
+	quantity: number; // number of items in cart
+	image: string; // product thumbnail
+	category?: string;
+	isTaxable?: boolean;
+	taxIncluded?: boolean;
+	discountType?: "none" | "percentage" | "fixed";
+	discountValue?: number;
+}
