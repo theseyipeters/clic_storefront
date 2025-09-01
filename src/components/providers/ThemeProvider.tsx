@@ -1,14 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import { MantineProvider, ColorSchemeScript, createTheme } from "@mantine/core";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
 	setCurrentSubdomain,
 	getBrandingConfig,
-	clearBranding,
 	getStoreInventory,
 } from "@/slices/storefrontSlice";
 import { generateColors } from "@mantine/colors-generator";
-import { createMantineTheme } from "@/lib/mantine-theme";
 import { HelmetProvider } from "react-helmet-async";
 
 interface ThemeProviderProps {

@@ -1,14 +1,5 @@
 import { CartItem as ICartItem } from "@/types/inventory";
-import {
-	Button,
-	Group,
-	Image,
-	Text,
-	NumberInput,
-	Avatar,
-	Stack,
-	Badge,
-} from "@mantine/core";
+import { Group, Image, Text, NumberInput, Stack, Badge } from "@mantine/core";
 import { useAppDispatch } from "@/store/hooks";
 import { removeFromCart, updateQuantity } from "@/slices/storefrontSlice";
 import { Icon } from "@iconify/react/dist/iconify.js";

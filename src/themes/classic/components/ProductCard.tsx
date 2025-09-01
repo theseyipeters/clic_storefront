@@ -1,4 +1,3 @@
-import { useAppDispatch } from "@/store/hooks";
 import { Product } from "@/types/inventory";
 import { Skeleton } from "@mantine/core";
 import Link from "next/link";

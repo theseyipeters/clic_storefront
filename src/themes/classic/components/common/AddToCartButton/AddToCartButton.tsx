@@ -2,8 +2,7 @@ import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { addToCart } from "@/slices/storefrontSlice";
 import { toCartItem } from "@/lib/helpers/helper";
 import { Product } from "@/types/inventory";
-import { ActionIcon, Button, Indicator } from "@mantine/core";
-import Link from "next/link";
+import { ActionIcon, Indicator } from "@mantine/core";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 type AddToCartButtonProps = {

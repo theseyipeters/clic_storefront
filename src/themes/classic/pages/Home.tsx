@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Text, Box, Tabs, Paper } from "@mantine/core";
+import { Text, Box, Tabs } from "@mantine/core";
 import styles from "../styles/classic.module.css";
 import { BrandingConfig } from "@/types/theme";
 import { useAppSelector } from "@/store/hooks";
 import ProductCard from "../components/ProductCard";
 import { productCategories } from "@/data/inventoryData";
-import Link from "next/link";
 
 interface ClassicHomeProps {
 	brandingConfig: BrandingConfig;

@@ -10,7 +10,6 @@ import {
 	TextInput,
 	ActionIcon,
 	Badge,
-	Breadcrumbs,
 } from "@mantine/core";
 import { BrandingConfig } from "@/types/theme";
 import { Icon } from "@iconify/react/dist/iconify.js";

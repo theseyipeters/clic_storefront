@@ -1,12 +1,10 @@
 "use client";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/store/store";
 import { setCart } from "@/slices/storefrontSlice";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 export default function CartPersistence() {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const { cartItems } = useAppSelector((state) => state.storefront);
 
 	// Load from localStorage on mount

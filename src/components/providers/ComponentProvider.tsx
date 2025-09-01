@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { getTheme, Theme } from "@/themes";
-import { Center, Loader, LoadingOverlay } from "@mantine/core";
+import { Center, Loader } from "@mantine/core";
 import { BrandingConfig } from "@/types/theme";
 
 interface ComponentContextType {
