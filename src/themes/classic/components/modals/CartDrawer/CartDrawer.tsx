@@ -100,6 +100,7 @@ export default function CartDrawer() {
 							<Button
 								component={Link}
 								href={"/cart"}
+								onClick={() => dispatch(toggleCartDrawer(false))}
 								autoContrast
 								h={50}
 								variant="outline"
@@ -111,9 +112,7 @@ export default function CartDrawer() {
 								h={50}
 								fw={500}
 								fullWidth
-								onClick={() => {
-									console.log("Proceed to checkout");
-								}}>
+								onClick={() => dispatch(toggleCartDrawer(false))}>
 								Proceed to Checkout
 							</Button>
 						</Stack>
