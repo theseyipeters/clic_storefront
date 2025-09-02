@@ -43,7 +43,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 			)}
 
 			<div className="relative">
-				<div className="absolute right-0 -top-[50px] z-50">
+				<div className="absolute right-0 -top-[50px] z-10">
 					<AddToCartButton product={product} />
 				</div>
 				<div className="flex items-end justify-between gap-2">
